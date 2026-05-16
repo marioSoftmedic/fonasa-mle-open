@@ -40,6 +40,10 @@ const cache = new Map<string, Exam[]>();
 async function loadData(year: string, forceRefresh = false): Promise<Exam[]> {
   const allowedYears = ["2025", "2026"] as const;
   
+  if (!allowedYears.includes(year as any)) {
+    throw new Error(`Año no permitido: ${year}. Solo se permite: ${allowedYears.join(", ")}`);
+  }
+
   if (cache.has(year) && !forceRefresh) {
     const cachedData = cache.get(year)!;
     if (cachedData.length > 0) return cachedData;
@@ -89,12 +93,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 const BuscarExamenSchema = z.object({
-  query: z.string(),
+  query: z.string().trim(),
   year: z.enum(["2025", "2026"]).optional().default("2026"),
 });
 
 const DetalleExamenSchema = z.object({
-  code: z.string().regex(/^\d{7}$/, "El código debe tener exactamente 7 dígitos numéricos"),
+  code: z.string().trim().regex(/^\d{7}$/, "El código debe tener exactamente 7 dígitos numéricos"),
   year: z.enum(["2025", "2026"]).optional().default("2026"),
 });
 
@@ -107,8 +111,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const data = await loadData(year);
       
       const normalizedQuery = query.toUpperCase();
+      const codeQuery = query.replace(/\D/g, "").padStart(7, "0");
+
       const results = data.filter(
-        (e) => e.name.toUpperCase().includes(normalizedQuery) || e.code.startsWith(query)
+        (e) => 
+          e.name.toUpperCase().includes(normalizedQuery) || 
+          e.code.startsWith(query) ||
+          e.code === codeQuery
       ).slice(0, 10);
 
       return {

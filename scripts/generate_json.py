@@ -27,7 +27,8 @@ def load_shared_strings(z):
 
 def normalize_code(code):
     if not code: return None
-    clean = "".join(filter(str.isdigit, str(code)))
+    s = str(code).split('.')[0]
+    clean = "".join(filter(str.isdigit, s))
     if not clean or len(clean) > 7: return None
     return clean.zfill(7)
 
@@ -50,7 +51,7 @@ def to_int(v):
         if len(parts[-1]) == 3: # 1.680 -> 1680
             s = s.replace(".", "")
         else: # 1680.0 -> 1680
-            s = parts[0]
+            s = s.rsplit('.', 1)[0]
             
     try:
         return int(float(s))
@@ -132,11 +133,11 @@ def parse_xlsx(xlsx_path: Path, layout: str):
                         # If name_b is numeric and short, it's likely Pabellon (Layout 2)
                         b_is_numeric = str(name_b).isdigit() if name_b else False
                         
-                        if name_b and not b_is_numeric and len(str(name_b)) > 2:
+                        if name_b and not b_is_numeric and len(str(name_b)) >= 2:
                             nombre = str(name_b)
                             prices = [val("C"), val("D"), val("E"), val("F"), val("G"), val("H")]
                             final_prices = [to_int(p) for p in prices]
-                        elif name_c and len(str(name_c)) > 2:
+                        elif name_c and len(str(name_c)) >= 2:
                             nombre = str(name_c)
                             # Sum Honorarios (K-P) and Procedimientos (Q-V)
                             h = [to_int(val(c)) for c in ["K", "L", "M", "N", "O", "P"]]
