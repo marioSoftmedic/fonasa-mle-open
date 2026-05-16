@@ -111,14 +111,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const data = await loadData(year);
       
       const normalizedQuery = query.toUpperCase();
-      const codeQuery = query.replace(/\D/g, "").padStart(7, "0");
+      const hasDigits = /\d/.test(query);
+      const numericQuery = query.replace(/\D/g, "");
+      const paddedQuery = numericQuery.padStart(7, "0");
 
-      const results = data.filter(
-        (e) => 
-          e.name.toUpperCase().includes(normalizedQuery) || 
-          e.code.startsWith(query) ||
-          e.code === codeQuery
-      ).slice(0, 10);
+      const results = data.filter((e) => {
+        // Search by name
+        if (e.name.toUpperCase().includes(normalizedQuery)) return true;
+        
+        // Search by code (exact or prefix)
+        if (hasDigits) {
+          // Exact match with padding (e.g. "301045" -> "0301045")
+          if (e.code === paddedQuery) return true;
+          
+          // Prefix match on normalized code (e.g. "301" matches "0301045")
+          const normalizedCode = e.code.replace(/^0+/, "");
+          if (normalizedCode.startsWith(numericQuery) || e.code.startsWith(numericQuery)) return true;
+        }
+        
+        return false;
+      }).slice(0, 10);
 
       return {
         content: [

@@ -1,9 +1,13 @@
 import json
 import argparse
+import sys
 from pathlib import Path
 from dataclasses import dataclass, asdict
 from lxml import etree
 import zipfile
+
+# Secure XML Parser to prevent XXE
+SAFE_PARSER = etree.XMLParser(resolve_entities=False, no_network=True)
 
 @dataclass
 class Exam:
@@ -19,7 +23,7 @@ class Exam:
 def load_shared_strings(z):
     try:
         with z.open('xl/sharedStrings.xml') as f:
-            tree = etree.parse(f)
+            tree = etree.parse(f, parser=SAFE_PARSER)
             ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
             return [t.text if t.text is not None else "" for t in tree.xpath(".//ns:t", namespaces={'ns': ns})]
     except KeyError:
@@ -28,6 +32,9 @@ def load_shared_strings(z):
 def normalize_code(code):
     if not code: return None
     s = str(code).split('.')[0]
+    # Check if there are non-digit characters (ignoring dots which we split)
+    if any(not c.isdigit() for c in s):
+        sys.stderr.write(f"⚠️ Código malformado detectado: {code}\n")
     clean = "".join(filter(str.isdigit, s))
     if not clean or len(clean) > 7: return None
     return clean.zfill(7)
@@ -38,23 +45,23 @@ def to_int(v):
     if not s or s == "0": return 0
     
     # Handle Chilean format and potential XML float strings
-    # If it has a comma, it's likely decimal. 
-    # If it has a dot, it could be thousands (1.680) or decimal (1680.0)
-    # In MLE, prices are integers.
-    
-    if "," in s: # Chilean decimal
+    # If it has a comma, it's likely decimal (Chilean locale).
+    if "," in s:
         s = s.replace(".", "").replace(",", ".")
     elif "." in s:
-        # If it ends in .0 or .00, it's a float decimal (1680.0)
-        # If the dot is followed by 3 digits, it's likely thousands (1.680)
+        # Strip trailing zero decimals (.0, .00, etc)
+        import re
+        s = re.sub(r'\.0+$', '', s)
+        
+        # If dot remains and it looks like a float (e.g. 1.5), we keep it for float()
+        # If it has 3 digits after dot, it's likely a thousands separator (1.680)
         parts = s.split(".")
-        if len(parts[-1]) == 3: # 1.680 -> 1680
+        if len(parts) > 1 and len(parts[-1]) == 3:
             s = s.replace(".", "")
-        else: # 1680.0 -> 1680
-            s = s.rsplit('.', 1)[0]
             
     try:
-        return int(float(s))
+        # float() handles scientific notation and remaining dots
+        return int(round(float(s)))
     except (ValueError, TypeError):
         return 0
 
@@ -70,13 +77,15 @@ def parse_xlsx(xlsx_path: Path, layout: str):
         for sheet_file in sheet_files:
             print(f"  📄 Procesando {sheet_file}...")
             with z.open(sheet_file) as f:
-                tree = etree.parse(f)
+                tree = etree.parse(f, parser=SAFE_PARSER)
                 root = tree.getroot()
                 rows = root.xpath(".//ns:row", namespaces={'ns': ns})
                 
-                for row in rows:
+                for row_idx, row in enumerate(rows):
                     def val(col):
                         r_idx = row.get("r")
+                        if r_idx is None: # Fallback if 'r' is missing
+                             r_idx = str(row_idx + 1)
                         c = row.find(f"ns:c[@r='{col}{r_idx}']", namespaces={'ns': ns})
                         if c is None: return None
                         
@@ -111,6 +120,7 @@ def parse_xlsx(xlsx_path: Path, layout: str):
                             
                         # Robust code generation: avoid truncation, ensure correct digits
                         if len(g_norm) > 2 or len(sg_norm) > 2 or len(it_norm) > 3:
+                            sys.stderr.write(f"⚠️ Fila {row.get('r')} saltada: Código fuera de rango ({g_norm}-{sg_norm}-{it_norm})\n")
                             continue
                             
                         code = f"{g_norm.zfill(2)}{sg_norm.zfill(2)}{it_norm.zfill(3)}"
