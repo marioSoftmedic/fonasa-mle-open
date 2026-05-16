@@ -1320,6 +1320,16 @@
     "level3_copay": 5570
   },
   {
+    "code": "0301024",
+    "name": "Factor V",
+    "level1_total": 2260,
+    "level1_copay": 1130,
+    "level2_total": 2940,
+    "level2_copay": 1810,
+    "level3_total": 3620,
+    "level3_copay": 2490
+  },
+  {
     "code": "0301025",
     "name": "Factores VII, VIII, IX, X, XI, XII, XIII, c/u",
     "level1_total": 5100,
@@ -1328,6 +1338,16 @@
     "level2_copay": 4080,
     "level3_total": 8160,
     "level3_copay": 5610
+  },
+  {
+    "code": "0301026",
+    "name": "Ferritina",
+    "level1_total": 6060,
+    "level1_copay": 3030,
+    "level2_total": 7880,
+    "level2_copay": 4850,
+    "level3_total": 9700,
+    "level3_copay": 6670
   },
   {
     "code": "0301027",
@@ -1680,6 +1700,16 @@
     "level3_copay": 34570
   },
   {
+    "code": "0301092",
+    "name": "Proteína S",
+    "level1_total": 37170,
+    "level1_copay": 18580,
+    "level2_total": 48320,
+    "level2_copay": 29730,
+    "level3_total": 59470,
+    "level3_copay": 40880
+  },
+  {
     "code": "0301093",
     "name": "Resistencia a la Proteína C activada",
     "level1_total": 23410,
@@ -1698,6 +1728,16 @@
     "level2_copay": 38620,
     "level3_total": 77250,
     "level3_copay": 53110
+  },
+  {
+    "code": "0301095",
+    "name": "Dímero-D",
+    "level1_total": 12070,
+    "level1_copay": 6030,
+    "level2_total": 15690,
+    "level2_copay": 9650,
+    "level3_total": 19310,
+    "level3_copay": 13270
   },
   {
     "code": "0301096",
@@ -1830,6 +1870,16 @@
     "level3_copay": 7460
   },
   {
+    "code": "0302010",
+    "name": "Amonio",
+    "level1_total": 2490,
+    "level1_copay": 1240,
+    "level2_total": 3240,
+    "level2_copay": 1990,
+    "level3_total": 3980,
+    "level3_copay": 2730
+  },
+  {
     "code": "0302070",
     "name": "Apolipoproteínas (A1, B u otras) c/u",
     "level1_total": 6980,
@@ -1878,6 +1928,16 @@
     "level2_copay": 1120,
     "level3_total": 2240,
     "level3_copay": 1540
+  },
+  {
+    "code": "0302017",
+    "name": "Caroteno",
+    "level1_total": 2230,
+    "level1_copay": 1110,
+    "level2_total": 2900,
+    "level2_copay": 1780,
+    "level3_total": 3570,
+    "level3_copay": 2450
   },
   {
     "code": "0302018",
@@ -1980,6 +2040,16 @@
     "level3_copay": 4210
   },
   {
+    "code": "0302027",
+    "name": "Troponina",
+    "level1_total": 11450,
+    "level1_copay": 5720,
+    "level2_total": 14890,
+    "level2_copay": 9160,
+    "level3_total": 18320,
+    "level3_copay": 12590
+  },
+  {
     "code": "0302030",
     "name": "Deshidrogenasa láctica total (LDH)",
     "level1_total": 2410,
@@ -2078,6 +2148,16 @@
     "level2_copay": 1480,
     "level3_total": 2960,
     "level3_copay": 2030
+  },
+  {
+    "code": "0302043",
+    "name": "Galactosa",
+    "level1_total": 890,
+    "level1_copay": 440,
+    "level2_total": 1160,
+    "level2_copay": 710,
+    "level3_total": 1420,
+    "level3_copay": 970
   },
   {
     "code": "0302045",
@@ -2460,6 +2540,16 @@
     "level3_copay": 7550
   },
   {
+    "code": "0303006",
+    "name": "Cortisol",
+    "level1_total": 5630,
+    "level1_copay": 2810,
+    "level2_total": 7320,
+    "level2_copay": 4500,
+    "level3_total": 9010,
+    "level3_copay": 6190
+  },
+  {
     "code": "0303007",
     "name": "Crecimiento, hormona de (HGH) (somatotrofina)",
     "level1_total": 7130,
@@ -2488,6 +2578,16 @@
     "level2_copay": 4740,
     "level3_total": 9470,
     "level3_copay": 6510
+  },
+  {
+    "code": "0303012",
+    "name": "Gastrina",
+    "level1_total": 7560,
+    "level1_copay": 3780,
+    "level2_total": 9830,
+    "level2_copay": 6050,
+    "level3_total": 12100,
+    "level3_copay": 8320
   },
   {
     "code": "0303014",
@@ -2540,6 +2640,16 @@
     "level3_copay": 14900
   },
   {
+    "code": "0303017",
+    "name": "Insulina",
+    "level1_total": 5160,
+    "level1_copay": 2580,
+    "level2_total": 6710,
+    "level2_copay": 4130,
+    "level3_total": 8260,
+    "level3_copay": 5680
+  },
+  {
     "code": "0303031",
     "name": "Insulina, curva de (mínimo dos determinaciones e incluye todas las tomas de muestra necesarias. No incluye la glucosa que se administra)",
     "level1_total": 13910,
@@ -2578,6 +2688,16 @@
     "level2_copay": 4430,
     "level3_total": 8860,
     "level3_copay": 6090
+  },
+  {
+    "code": "0303021",
+    "name": "Renina",
+    "level1_total": 8960,
+    "level1_copay": 4480,
+    "level2_total": 11650,
+    "level2_copay": 7170,
+    "level3_total": 14340,
+    "level3_copay": 9860
   },
   {
     "code": "0303046",
@@ -2700,10 +2820,30 @@
     "level3_copay": 38590
   },
   {
+    "code": "0303052",
+    "name": "Peptido C",
+    "level1_total": 45500,
+    "level1_copay": 22750,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
     "code": "0303053",
     "name": "Calcitonina",
     "level1_total": 46160,
     "level1_copay": 23080,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "0303054",
+    "name": "Inhibina B",
+    "level1_total": 53210,
+    "level1_copay": 26600,
     "level2_total": 0,
     "level2_copay": 0,
     "level3_total": 0,
@@ -3400,6 +3540,16 @@
     "level3_copay": 22400
   },
   {
+    "code": "0305042",
+    "name": "LIF o MIF",
+    "level1_total": 6000,
+    "level1_copay": 3000,
+    "level2_total": 7800,
+    "level2_copay": 4800,
+    "level3_total": 9600,
+    "level3_copay": 6600
+  },
+  {
     "code": "0305044",
     "name": "Linfocitos B (rosetas EAC) y linfocitos T (rosetas E) c/u",
     "level1_total": 7470,
@@ -4030,6 +4180,16 @@
     "level3_copay": 5790
   },
   {
+    "code": "0306038",
+    "name": "R.P.R.",
+    "level1_total": 2720,
+    "level1_copay": 1360,
+    "level2_total": 3540,
+    "level2_copay": 2180,
+    "level3_total": 4350,
+    "level3_copay": 2990
+  },
+  {
     "code": "0306039",
     "name": "Tíficas, reacciones de aglutinación  (Eberth H y O, paratyphi A y B) (Widal)",
     "level1_total": 3580,
@@ -4048,6 +4208,16 @@
     "level2_copay": 4020,
     "level3_total": 8030,
     "level3_copay": 5520
+  },
+  {
+    "code": "0306042",
+    "name": "V.D.R.L.",
+    "level1_total": 3120,
+    "level1_copay": 1560,
+    "level2_total": 4060,
+    "level2_copay": 2500,
+    "level3_total": 4990,
+    "level3_copay": 3430
   },
   {
     "code": "0306094",
@@ -4938,6 +5108,16 @@
     "level2_copay": 21040,
     "level3_total": 42100,
     "level3_copay": 28940
+  },
+  {
+    "code": "0308021",
+    "name": "Glutamina",
+    "level1_total": 2040,
+    "level1_copay": 1020,
+    "level2_total": 2650,
+    "level2_copay": 1630,
+    "level3_total": 3260,
+    "level3_copay": 2240
   },
   {
     "code": "0308022",
@@ -7350,6 +7530,16 @@
     "level3_copay": 41210
   },
   {
+    "code": "0501135",
+    "name": "PET-CT",
+    "level1_total": 791040,
+    "level1_copay": 395520,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
     "code": "0502001",
     "name": "Dosis terapéuticas con I-131 hasta 30 mCi.",
     "level1_total": 87310,
@@ -8480,6 +8670,16 @@
     "level3_copay": 0
   },
   {
+    "code": "2301012",
+    "name": "Marcapaso",
+    "level1_total": 691880,
+    "level1_copay": 345940,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
     "code": "2301013",
     "name": "Malla abdominal (hernia inguinal, ventral, umbilical, incisional)",
     "level1_total": 27070,
@@ -8614,6 +8814,16 @@
     "name": "Cavidad para amputado de muslo",
     "level1_total": 29380,
     "level1_copay": 14690,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "2301024",
+    "name": "Rodillera",
+    "level1_total": 3960,
+    "level1_copay": 1980,
     "level2_total": 0,
     "level2_copay": 0,
     "level3_total": 0,
@@ -9810,6 +10020,16 @@
     "level3_copay": 0
   },
   {
+    "code": "2501017",
+    "name": "Fimosis",
+    "level1_total": 593920,
+    "level1_copay": 296960,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
     "code": "2501018",
     "name": "Criptorquidia",
     "level1_total": 959830,
@@ -10260,10 +10480,50 @@
     "level3_copay": 0
   },
   {
+    "code": "2502003",
+    "name": "Várices",
+    "level1_total": 775370,
+    "level1_copay": 387680,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "2502004",
+    "name": "Varicocele",
+    "level1_total": 804270,
+    "level1_copay": 402130,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "2502005",
+    "name": "Chalazión",
+    "level1_total": 211100,
+    "level1_copay": 105550,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
     "code": "2502006",
     "name": "Glaucoma tratamiento quirúrgico",
     "level1_total": 872690,
     "level1_copay": 436340,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "2502007",
+    "name": "Pterigión",
+    "level1_total": 395890,
+    "level1_copay": 197940,
     "level2_total": 0,
     "level2_copay": 0,
     "level3_total": 0,
@@ -10394,6 +10654,16 @@
     "name": "Manejo de la mal nutrición infantil (7 a 72 meses de edad)",
     "level1_total": 54350,
     "level1_copay": 27170,
+    "level2_total": 0,
+    "level2_copay": 0,
+    "level3_total": 0,
+    "level3_copay": 0
+  },
+  {
+    "code": "2502022",
+    "name": "Vasectomía",
+    "level1_total": 838760,
+    "level1_copay": 419380,
     "level2_total": 0,
     "level2_copay": 0,
     "level3_total": 0,
@@ -14380,6 +14650,16 @@
     "level3_copay": 124700
   },
   {
+    "code": "1202068",
+    "name": "Iridotomía",
+    "level1_total": 113370,
+    "level1_copay": 56680,
+    "level2_total": 147380,
+    "level2_copay": 90690,
+    "level3_total": 181390,
+    "level3_copay": 124700
+  },
+  {
     "code": "1202069",
     "name": "Trabeculoplastía o iridoplastía",
     "level1_total": 113370,
@@ -16908,6 +17188,16 @@
     "level2_copay": 21700,
     "level3_total": 43390,
     "level3_copay": 29830
+  },
+  {
+    "code": "1601122",
+    "name": "Tricograma",
+    "level1_total": 21690,
+    "level1_copay": 10840,
+    "level2_total": 28200,
+    "level2_copay": 17350,
+    "level3_total": 34700,
+    "level3_copay": 23850
   },
   {
     "code": "1601124",
@@ -24702,6 +24992,16 @@
   {
     "code": "2105004",
     "name": "Rodillera, bota larga o corta de yeso",
+    "level1_total": 17870,
+    "level1_copay": 8930,
+    "level2_total": 23230,
+    "level2_copay": 14290,
+    "level3_total": 28590,
+    "level3_copay": 19650
+  },
+  {
+    "code": "2105005",
+    "name": "Velpeau",
     "level1_total": 17870,
     "level1_copay": 8930,
     "level2_total": 23230,

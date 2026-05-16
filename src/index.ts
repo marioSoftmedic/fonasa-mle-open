@@ -35,13 +35,25 @@ const server = new Server(
   }
 );
 
-async function loadData(year: string): Promise<Exam[]> {
+const cache = new Map<string, Exam[]>();
+
+async function loadData(year: string, forceRefresh = false): Promise<Exam[]> {
+  const allowedYears = ["2025", "2026"] as const;
+  
+  if (cache.has(year) && !forceRefresh) {
+    const cachedData = cache.get(year)!;
+    if (cachedData.length > 0) return cachedData;
+  }
+
   try {
     const filePath = path.join(DATA_DIR, `mle-${year}.json`);
     const content = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(content);
+    const data = JSON.parse(content);
+    cache.set(year, data);
+    return data;
   } catch (error) {
-    return [];
+    console.error(`Error loading data for year ${year}:`, error);
+    throw new Error(`No se pudo cargar el catálogo del año ${year}. Verifique que el archivo existe y es válido.`);
   }
 }
 
@@ -76,44 +88,66 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   };
 });
 
+const BuscarExamenSchema = z.object({
+  query: z.string(),
+  year: z.enum(["2025", "2026"]).optional().default("2026"),
+});
+
+const DetalleExamenSchema = z.object({
+  code: z.string().regex(/^\d{7}$/, "El código debe tener exactamente 7 dígitos numéricos"),
+  year: z.enum(["2025", "2026"]).optional().default("2026"),
+});
+
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
-  if (name === "buscar_examen") {
-    const { query, year = "2026" } = args as { query: string; year?: string };
-    const data = await loadData(year);
-    
-    const normalizedQuery = query.toUpperCase();
-    const results = data.filter(
-      (e) => e.name.includes(normalizedQuery) || e.code.includes(query)
-    ).slice(0, 10);
+  try {
+    if (name === "buscar_examen") {
+      const { query, year } = BuscarExamenSchema.parse(args);
+      const data = await loadData(year);
+      
+      const normalizedQuery = query.toUpperCase();
+      const results = data.filter(
+        (e) => e.name.toUpperCase().includes(normalizedQuery) || e.code.startsWith(query)
+      ).slice(0, 10);
 
+      return {
+        content: [
+          {
+            type: "text",
+            text: results.length > 0 
+              ? JSON.stringify(results, null, 2) 
+              : `No se encontraron exámenes para "${query}" en el catálogo ${year}.`,
+          },
+        ],
+      };
+    }
+
+    if (name === "obtener_detalle_examen") {
+      const { code, year } = DetalleExamenSchema.parse(args);
+      const data = await loadData(year);
+      const exam = data.find((e) => e.code === code);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: exam 
+              ? JSON.stringify(exam, null, 2) 
+              : `No se encontró el examen con código ${code} en el catálogo ${year}.`,
+          },
+        ],
+      };
+    }
+  } catch (error) {
     return {
       content: [
         {
           type: "text",
-          text: results.length > 0 
-            ? JSON.stringify(results, null, 2) 
-            : `No se encontraron exámenes para "${query}" en el catálogo ${year}.`,
+          text: error instanceof Error ? error.message : String(error),
         },
       ],
-    };
-  }
-
-  if (name === "obtener_detalle_examen") {
-    const { code, year = "2026" } = args as { code: string; year?: string };
-    const data = await loadData(year);
-    const exam = data.find((e) => e.code === code);
-
-    return {
-      content: [
-        {
-          type: "text",
-          text: exam 
-            ? JSON.stringify(exam, null, 2) 
-            : `No se encontró el examen con código ${code} en el catálogo ${year}.`,
-        },
-      ],
+      isError: true,
     };
   }
 
