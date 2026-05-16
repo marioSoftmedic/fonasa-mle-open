@@ -9,6 +9,20 @@ Proporcionamos los datos limpios en formato JSON y un servidor **MCP (Model Cont
 - **Transparencia**: Acceso rápido a los precios de los 3 niveles de convenio.
 - **Comunidad**: Un recurso gratuito y actualizado anualmente (cada marzo).
 
+## 🧪 Pruebas
+Para verificar que el servidor MCP y los datos están correctos:
+
+```bash
+# Instalar dependencias
+pnpm install
+
+# Compilar el servidor
+pnpm build
+
+# Ejecutar el cliente de prueba funcional
+node --import tsx tests/test-client.ts
+```
+
 ## 🛠 Tech Stack
 - **Lenguaje**: TypeScript (Node.js)
 - **Protocolo**: MCP SDK (Model Context Protocol)
